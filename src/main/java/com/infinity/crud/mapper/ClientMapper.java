@@ -19,7 +19,7 @@ public class ClientMapper {
     }
 
     public ClientResponseDTO toResponseDTO(Client entity){
-        List<EquipResponseDTO> equipsDTO = entity.getEquips().stream().map(equipMapper::toResponseDTO).toList();
+        List<EquipResponseDTO> equipsDTO = (entity.getEquips() == null) ? List.of() : entity.getEquips().stream().map(equipMapper::toResponseDTO).toList();
         return new ClientResponseDTO(entity.getId(), entity.getNome(), entity.getTelefone(), entity.getEndereco(), equipsDTO, entity.getDataCadastro());
     }
 }

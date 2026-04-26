@@ -3,8 +3,10 @@ package com.infinity.crud.mapper;
 import com.infinity.crud.dto.userdto.UserRequestDTO;
 import com.infinity.crud.dto.userdto.UserResponseDTO;
 import com.infinity.crud.entity.User;
+import lombok.Builder;
 import org.springframework.stereotype.Component;
 
+@Builder
 @Component
 public class UserMapper {
 

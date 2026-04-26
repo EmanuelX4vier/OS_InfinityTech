@@ -41,8 +41,14 @@ public class UserServiceImpl implements UserService {
     public UserResponseDTO updateUser (Long id, UserUpdateDTO dto){
 
         User user = userRepository.findById(id).orElseThrow(UserNotFoundException::new);
-        user.setNome(dto.getNome());
-        user.setFuncao(dto.getFuncao());
+
+        // Só altera se o dado tiver sido enviado no JSON
+        if (dto.getNome() != null) {
+            user.setNome(dto.getNome());
+        }
+        if (dto.getFuncao() != null) {
+            user.setFuncao(dto.getFuncao());
+        }
 
         //Garante que o user foi atualizado.
         User updatedUser = userRepository.save(user);
