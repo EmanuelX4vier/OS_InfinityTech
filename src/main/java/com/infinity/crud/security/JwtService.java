@@ -7,19 +7,12 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-
 import java.security.Key;
 import java.util.Date;
 
-/**
- * Serviço responsável por criar, validar e ler tokens JWT.
- */
 @Service
 public class JwtService {
 
-    /**
-     * Chave secreta vinda do application.properties ou variável de ambiente.
-     */
     @Value("${JWT_SECRET}")
     private String secret;
 
@@ -31,7 +24,7 @@ public class JwtService {
     }
 
     /**
-     * 1. GERA TOKEN JWT
+     * GERA TOKEN JWT
      * - coloca email dentro do token (subject)
      * - define tempo de expiração
      * - assina com SECRET
@@ -46,15 +39,12 @@ public class JwtService {
                 .compact();
     }
 
-    /**
-     * 2. EXTRAI O EMAIL DO TOKEN
-     */
     public String extractEmail(String token) {
         return extractAllClaims(token).getSubject();
     }
 
     /**
-     * 3. VALIDA TOKEN
+     * VALIDA TOKEN
      * - verifica assinatura
      * - verifica expiração
      */

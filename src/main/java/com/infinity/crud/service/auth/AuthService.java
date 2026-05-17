@@ -11,12 +11,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-/**
- * Service responsável pela regra de negócio de autenticação.
- * Aqui ficam:
- * - registro de usuário
- * - login
- */
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -25,12 +19,6 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
 
-    /**
-     * Registra um novo usuário no sistema.
-     * - valida se o email já existe
-     * - criptografa a senha com BCrypt
-     * - salva no banco
-     */
     public void register(UserRequestDTO request) {
 
         // Verifica se já existe usuário com o mesmo email
@@ -50,10 +38,9 @@ public class AuthService {
         userRepository.save(user);
     }
 
-    /**
-     * Executa o login do usuário.
-     * Se email/senha estiverem incorretos, o Spring lança exceção automaticamente.
-     */
+
+     //Executa o login do usuário.
+
     public Authentication login(LoginRequestDTO request) {
 
         return authenticationManager.authenticate(

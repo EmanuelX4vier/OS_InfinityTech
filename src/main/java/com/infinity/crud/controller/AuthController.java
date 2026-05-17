@@ -9,10 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * Controller responsável pela autenticação.
- * Aqui fica o login (e futuramente logout, refresh token, etc).
- */
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor

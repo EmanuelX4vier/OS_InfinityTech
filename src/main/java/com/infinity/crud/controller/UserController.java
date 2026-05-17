@@ -1,6 +1,5 @@
 package com.infinity.crud.controller;
 
-import com.infinity.crud.dto.userdto.UserRequestDTO;
 import com.infinity.crud.dto.userdto.UserResponseDTO;
 import com.infinity.crud.dto.userdto.UserUpdateDTO;
 import com.infinity.crud.service.user.UserService;

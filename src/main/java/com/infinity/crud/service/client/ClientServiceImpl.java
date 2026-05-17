@@ -40,7 +40,7 @@ public class ClientServiceImpl implements ClientService{
         if(dto.getNome() != null){
            client.setNome(dto.getNome());
         }
-        if(dto.getEndereco() != null){
+        if(dto.getTelefone() != null){
            client.setTelefone(dto.getTelefone());
         }
 
