@@ -1,5 +1,14 @@
 spring:
+
+  config:
+    import: optional:file:.env[.properties]
+
+  docker:
+    compose:
+      enabled: false
+
   datasource:
+
     url: ${DB_URL}
     username: ${DB_USER}
     password: ${DB_PASSWORD}
