@@ -17,12 +17,6 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping
-    public ResponseEntity<UserResponseDTO> createUser(@RequestBody @Valid UserRequestDTO dto) {
-        UserResponseDTO created = userService.createUser(dto);
-        return ResponseEntity.status(201).body(created);
-    }
-
     @GetMapping("/{userId}")
     public ResponseEntity<UserResponseDTO> searchUser(@PathVariable Long userId) {
         UserResponseDTO user = userService.searchUser(userId);

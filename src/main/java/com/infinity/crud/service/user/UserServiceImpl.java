@@ -1,6 +1,5 @@
 package com.infinity.crud.service.user;
 
-import com.infinity.crud.dto.userdto.UserRequestDTO;
 import com.infinity.crud.dto.userdto.UserResponseDTO;
 import com.infinity.crud.dto.userdto.UserUpdateDTO;
 import com.infinity.crud.entity.User;
@@ -16,18 +15,6 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-
-    public UserResponseDTO createUser(UserRequestDTO dto) {
-
-        //Cria a entidade.
-        User user = userMapper.toEntity(dto);
-
-        //Salva no banco.
-        User savedUser = userRepository.save(user);
-
-        //Retorna as informações em forma de DTO para o usuário.
-        return userMapper.toResponseDTO(savedUser);
-    }
 
     public UserResponseDTO searchUser (Long id){
 

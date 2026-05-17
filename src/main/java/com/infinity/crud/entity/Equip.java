@@ -1,6 +1,6 @@
 package com.infinity.crud.entity;
 
-import com.infinity.crud.types.Status;
+import com.infinity.crud.enums.Status;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;

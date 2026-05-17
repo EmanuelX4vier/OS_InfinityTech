@@ -1,6 +1,5 @@
 package com.infinity.crud.security;
 
-import com.infinity.crud.service.auth.AuthService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -49,7 +48,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             UserDetails userDetails = userDetailsService.loadUserByUsername(email);
 
             // 6. valida token
-            if (jwtService.isTokenValid(token)) {
+            if (jwtService.isTokenValid(token, userDetails)) {
 
                 UsernamePasswordAuthenticationToken authToken =
                         new UsernamePasswordAuthenticationToken(
@@ -60,6 +59,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                 // 7. coloca usuário no Spring Security
                 SecurityContextHolder.getContext().setAuthentication(authToken);
+            }else{
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                response.setContentType("application/json");
+                // JSON válido
+                response.getWriter().write("{\"error\": \"Token inválido ou expirado\"}");
+                return;
             }
         }
 

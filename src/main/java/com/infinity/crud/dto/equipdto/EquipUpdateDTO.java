@@ -1,6 +1,6 @@
 package com.infinity.crud.dto.equipdto;
 
-import com.infinity.crud.types.Status;
+import com.infinity.crud.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

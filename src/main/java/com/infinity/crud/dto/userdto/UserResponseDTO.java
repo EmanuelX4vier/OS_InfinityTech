@@ -1,7 +1,7 @@
 package com.infinity.crud.dto.userdto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.infinity.crud.types.Functions;
+import com.infinity.crud.enums.Functions;
 import lombok.*;
 import java.time.LocalDateTime;
 

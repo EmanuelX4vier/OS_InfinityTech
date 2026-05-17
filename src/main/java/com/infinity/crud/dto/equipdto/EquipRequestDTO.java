@@ -1,6 +1,6 @@
 package com.infinity.crud.dto.equipdto;
 
-import com.infinity.crud.types.Status;
+import com.infinity.crud.enums.Status;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;

@@ -36,9 +36,17 @@ public class ClientServiceImpl implements ClientService{
     public ClientResponseDTO updateClient(Long id, ClientUpdateDTO dto) {
 
         Client client = clientRepository.findById(id).orElseThrow(ClientNotFoundException::new);
-        client.setNome(dto.getNome());
-        client.setTelefone(dto.getTelefone());
-        client.setEndereco(dto.getEndereco());
+
+        if(dto.getNome() != null){
+           client.setNome(dto.getNome());
+        }
+        if(dto.getEndereco() != null){
+           client.setTelefone(dto.getTelefone());
+        }
+
+        if(dto.getEndereco() != null){
+           client.setEndereco(dto.getEndereco());
+        }
 
         Client updateClient = clientRepository.save(client);
         return clientMapper.toResponseDTO(updateClient);

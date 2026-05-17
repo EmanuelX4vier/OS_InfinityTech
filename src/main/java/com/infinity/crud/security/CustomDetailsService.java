@@ -1,4 +1,4 @@
-package com.infinity.crud.service.user;
+package com.infinity.crud.security;
 
 import com.infinity.crud.entity.User;
 import com.infinity.crud.repository.UserRepository;

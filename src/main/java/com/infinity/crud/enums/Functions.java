@@ -1,4 +1,4 @@
-package com.infinity.crud.types;
+package com.infinity.crud.enums;
 
 public enum Functions {
 

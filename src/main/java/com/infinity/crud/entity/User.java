@@ -1,6 +1,6 @@
 package com.infinity.crud.entity;
 
-import com.infinity.crud.types.Functions;
+import com.infinity.crud.enums.Functions;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
@@ -25,7 +25,7 @@ public class User {
     private String email;
 
     @Column(nullable = false)
-    String senha;
+    private String senha;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

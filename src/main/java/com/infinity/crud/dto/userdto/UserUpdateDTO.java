@@ -1,6 +1,6 @@
 package com.infinity.crud.dto.userdto;
 
-import com.infinity.crud.types.Functions;
+import com.infinity.crud.enums.Functions;
 import lombok.*;
 
 @Data
