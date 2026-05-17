@@ -1,8 +1,8 @@
 package com.infinity.crud.controller;
 
-import com.infinity.crud.dto.equip.EquipRequestDTO;
-import com.infinity.crud.dto.equip.EquipResponseDTO;
-import com.infinity.crud.dto.equip.EquipUpdateDTO;
+import com.infinity.crud.dto.equipdto.EquipRequestDTO;
+import com.infinity.crud.dto.equipdto.EquipResponseDTO;
+import com.infinity.crud.dto.equipdto.EquipUpdateDTO;
 import com.infinity.crud.service.equip.EquipService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

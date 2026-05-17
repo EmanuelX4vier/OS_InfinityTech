@@ -1,8 +1,8 @@
 package com.infinity.crud.service.equip;
 
-import com.infinity.crud.dto.equip.EquipRequestDTO;
-import com.infinity.crud.dto.equip.EquipResponseDTO;
-import com.infinity.crud.dto.equip.EquipUpdateDTO;
+import com.infinity.crud.dto.equipdto.EquipRequestDTO;
+import com.infinity.crud.dto.equipdto.EquipResponseDTO;
+import com.infinity.crud.dto.equipdto.EquipUpdateDTO;
 import com.infinity.crud.entity.Client;
 import com.infinity.crud.entity.Equip;
 import com.infinity.crud.exception.ClientNotFoundException;

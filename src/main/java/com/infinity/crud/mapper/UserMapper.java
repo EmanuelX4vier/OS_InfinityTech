@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
 public class UserMapper {
 
     public User toEntity (UserRequestDTO dto){
-        User user = User.builder().nome(dto.getNome()).funcao(dto.getFuncao()).build();
+        User user = User.builder().nome(dto.getNome()).email(dto.getEmail()).senha(dto.getSenha()).funcao(dto.getFuncao()).build();
         return user;
     }
 
     public UserResponseDTO toResponseDTO(User entity){
-        UserResponseDTO userResponseDTO = new UserResponseDTO(entity.getId(), entity.getNome(), entity.getFuncao(), entity.getDataCadastro());
+        UserResponseDTO userResponseDTO = new UserResponseDTO(entity.getId(), entity.getNome(), entity.getEmail(), entity.getFuncao(), entity.getDataCadastro());
         return userResponseDTO;
     }
 }

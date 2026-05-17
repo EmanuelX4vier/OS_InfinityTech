@@ -1,7 +1,7 @@
 package com.infinity.crud.dto.clientdto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.infinity.crud.dto.equip.EquipResponseDTO;
+import com.infinity.crud.dto.equipdto.EquipResponseDTO;
 import lombok.*;
 import java.time.LocalDateTime;
 import java.util.List;

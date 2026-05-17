@@ -1,4 +1,4 @@
-package com.infinity.crud.dto.equip;
+package com.infinity.crud.dto.equipdto;
 
 import com.infinity.crud.types.Status;
 import lombok.AllArgsConstructor;

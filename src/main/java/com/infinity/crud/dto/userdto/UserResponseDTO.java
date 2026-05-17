@@ -13,6 +13,7 @@ public class UserResponseDTO {
 
     private Long id;
     private String nome;
+    private String email;
     private Functions funcao;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")

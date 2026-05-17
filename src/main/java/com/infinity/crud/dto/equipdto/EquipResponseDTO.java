@@ -1,4 +1,4 @@
-package com.infinity.crud.dto.equip;
+package com.infinity.crud.dto.equipdto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.infinity.crud.types.Status;

@@ -1,7 +1,7 @@
 package com.infinity.crud.mapper;
 
-import com.infinity.crud.dto.equip.EquipRequestDTO;
-import com.infinity.crud.dto.equip.EquipResponseDTO;
+import com.infinity.crud.dto.equipdto.EquipRequestDTO;
+import com.infinity.crud.dto.equipdto.EquipResponseDTO;
 import com.infinity.crud.entity.Client;
 import com.infinity.crud.entity.Equip;
 import org.springframework.stereotype.Component;
