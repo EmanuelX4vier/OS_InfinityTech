@@ -3,6 +3,7 @@ package com.infinity.crud.service.refresh;
 import com.infinity.crud.entity.RefreshToken;
 import com.infinity.crud.entity.User;
 import com.infinity.crud.repository.RefreshTokenRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -64,6 +65,7 @@ public class RefreshTokenService {
                 .orElseThrow(() -> new RuntimeException("Refresh token não encontrado"));
     }
 
+    @Transactional
     public void revokeAllByUser(User user) {
         repository.deleteByUser(user);
     }
