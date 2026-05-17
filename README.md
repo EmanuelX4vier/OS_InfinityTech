@@ -14,6 +14,7 @@ O projeto utiliza uma arquitetura modular em camadas, garantindo total separaç�
 - **Spring Data JPA**: Abstração de persistência e comunicação com banco de dados.
 - **Lombok**: Redução de código boilerplate (Getters, Setters, Construtores).
 - **Jakarta Validation**: Validação rigorosa de dados de entrada.
+- **JWT Token**: Código seguro com Bearer Token. 
 
 ## 🏗 Arquitetura do Projeto
 
@@ -25,10 +26,18 @@ A estrutura segue o padrão de **Camadas**:
 4.  **Mapper**: Componentes responsáveis pela conversão entre Entidades e DTOs.
 5.  **DTO (Data Transfer Object)**: Segurança e controle total sobre o que é exposto na API.
 6.  **Exception Handling**: Tratamento global de erros com respostas padronizadas.
+7.  **Security**: Todas as configurações de filtros, validação de token e permissões de rotas.
+8.  **Enums**: Separando os tipos enumerados de acordo com a necessidade.
 
 ##📡 Endpoints Principais
+
+Autenticação (/auth)
+
+POST /login: Valida usuário no banco.
+
+POST /register: Registra um usuário com a senha em hash.
+
 Usuários (/users)
-POST /users: Cadastra um novo funcionário.
 
 GET /users/{id}: Busca detalhes de um usuário.
 
