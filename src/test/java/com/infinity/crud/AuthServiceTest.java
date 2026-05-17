@@ -21,9 +21,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -44,11 +42,6 @@ class AuthServiceTest {
     @Mock
     private JwtService jwtService;
 
-    /*
-     * CORREÇÃO: RefreshTokenService foi adicionado ao AuthService,
-     * mas não estava mockado aqui. Sem esse @Mock, o Mockito injeta null
-     * no campo e qualquer chamada a refreshTokenService.* lança NullPointerException.
-     */
     @Mock
     private RefreshTokenService refreshTokenService;
 
