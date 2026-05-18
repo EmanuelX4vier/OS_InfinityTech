@@ -5,6 +5,7 @@ import com.infinity.crud.entity.User;
 import com.infinity.crud.enums.Functions;
 import com.infinity.crud.repository.RefreshTokenRepository;
 import com.infinity.crud.service.refresh.RefreshTokenService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,6 +13,8 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.lang.reflect.Field;
 import java.time.Instant;
 import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,6 +30,13 @@ class RefreshTokenServiceTest {
 
     @InjectMocks
     private RefreshTokenService refreshTokenService;
+
+    @BeforeEach
+    void setUp() throws Exception {
+        Field field = RefreshTokenService.class.getDeclaredField("refreshTokenDurationDays");
+        field.setAccessible(true);
+        field.set(refreshTokenService, 7L);
+    }
 
 
     @Test
@@ -46,7 +56,7 @@ class RefreshTokenServiceTest {
 
         assertNotNull(salvo.getToken());       // token UUID foi gerado
         assertFalse(salvo.isRevoked());         // começa não revogado
-        assertFalse(salvo.getExpiresAt().isAfter(Instant.now())); // expira no futuro
+        assertTrue(salvo.getExpiresAt().isAfter(Instant.now())); // expira no futuro
         assertEquals(user, salvo.getUser());   // vinculado ao usuário correto
     }
 

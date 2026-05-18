@@ -4,17 +4,16 @@ import com.infinity.crud.dto.authdto.AuthResponseDTO;
 import com.infinity.crud.dto.authdto.AuthTokens;
 import com.infinity.crud.dto.authdto.LoginRequestDTO;
 import com.infinity.crud.dto.userdto.UserRequestDTO;
+import com.infinity.crud.exception.RefreshTokenNaoEncontradoException;
 import com.infinity.crud.service.auth.AuthService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpCookie;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -82,7 +81,7 @@ public class AuthController {
                 .secure(true)
                 .path("/")
                 .maxAge(7 * 24 * 60 * 60)
-                .sameSite("Strict")
+                .sameSite("None")
                 .build();
 
         // 4. retorna novo access token no body
@@ -95,12 +94,22 @@ public class AuthController {
     // LOGOUT
     // =========================
     @PostMapping("/logout")
-    public ResponseEntity<String> logout(
-            @RequestBody String refreshToken
-    ) {
+    public ResponseEntity<String> logout(HttpServletRequest request) {
+        String refreshToken = Arrays.stream(
+                        Optional.ofNullable(request.getCookies()).orElse(new Cookie[0]))
+                .filter(c -> c.getName().equals("refreshToken"))
+                .findFirst()
+                .map(Cookie::getValue)
+                .orElseThrow(RefreshTokenNaoEncontradoException::new);
 
         authService.logout(refreshToken);
 
-        return ResponseEntity.ok("Logout realizado com sucesso");
+        // Limpa o cookie no browser do cliente
+        ResponseCookie clearCookie = ResponseCookie.from("refreshToken", "")
+                .httpOnly(true).secure(true).path("/").maxAge(0).sameSite("None").build();
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, clearCookie.toString())
+                .body("Logout realizado com sucesso");
     }
 }

@@ -1,11 +1,11 @@
 package com.infinity.crud.service.auth;
 
-import com.infinity.crud.dto.authdto.AuthResponseDTO;
 import com.infinity.crud.dto.authdto.AuthTokens;
 import com.infinity.crud.dto.authdto.LoginRequestDTO;
 import com.infinity.crud.dto.userdto.UserRequestDTO;
 import com.infinity.crud.entity.RefreshToken;
 import com.infinity.crud.entity.User;
+import com.infinity.crud.exception.EmailAlreadyExistsException;
 import com.infinity.crud.repository.UserRepository;
 import com.infinity.crud.security.JwtService;
 import com.infinity.crud.service.refresh.RefreshTokenService;
@@ -29,7 +29,7 @@ public class AuthService {
     public void register(UserRequestDTO request) {
 
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
-            throw new RuntimeException("Já existe um usuário cadastrado com este email.");
+            throw new EmailAlreadyExistsException();
         }
 
         User user = User.builder()
@@ -77,6 +77,7 @@ public class AuthService {
         String newAccessToken = jwtService.generateToken(user.getEmail());
 
         refreshTokenService.revokeToken(refreshToken);
+        refreshTokenService.deleteToken(refreshToken);
         RefreshToken newRefreshToken = refreshTokenService.createRefreshToken(user);
 
         return new AuthTokens(newAccessToken, newRefreshToken.getToken());

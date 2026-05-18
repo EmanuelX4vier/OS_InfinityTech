@@ -1,6 +1,7 @@
 package com.infinity.crud;
 
 import com.infinity.crud.dto.authdto.AuthResponseDTO;
+import com.infinity.crud.dto.authdto.AuthTokens;
 import com.infinity.crud.dto.authdto.LoginRequestDTO;
 import com.infinity.crud.dto.userdto.UserRequestDTO;
 import com.infinity.crud.entity.RefreshToken;
@@ -130,7 +131,7 @@ class AuthServiceTest {
         when(refreshTokenService.createRefreshToken(any()))
                 .thenReturn(fakeRefreshToken);
 
-        AuthResponseDTO result = authService.login(request);
+        AuthTokens result = authService.login(request);
 
         // Valida que ambos os tokens estão no retorno
         assertNotNull(result);

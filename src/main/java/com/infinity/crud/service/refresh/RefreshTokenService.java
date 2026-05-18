@@ -60,11 +60,6 @@ public class RefreshTokenService {
         repository.save(refreshToken);
     }
 
-    public RefreshToken getByToken(String token) {
-        return repository.findByToken(token)
-                .orElseThrow(() -> new RuntimeException("Refresh token não encontrado"));
-    }
-
     @Transactional
     public void revokeAllByUser(User user) {
         repository.deleteByUser(user);
@@ -73,5 +68,6 @@ public class RefreshTokenService {
     @Scheduled(cron = "0 0 3 * * *") // todo dia às 3h da manhã
     public void limparTokensExpirados() {
         repository.deleteByExpiresAtBefore(Instant.now());
+        //repository.deleteByRevokedTrue();
     }
 }
