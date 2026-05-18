@@ -1,6 +1,7 @@
 package com.infinity.crud.service.auth;
 
 import com.infinity.crud.dto.authdto.AuthResponseDTO;
+import com.infinity.crud.dto.authdto.AuthTokens;
 import com.infinity.crud.dto.authdto.LoginRequestDTO;
 import com.infinity.crud.dto.userdto.UserRequestDTO;
 import com.infinity.crud.entity.RefreshToken;
@@ -42,7 +43,7 @@ public class AuthService {
     }
 
 
-    public AuthResponseDTO login(LoginRequestDTO request) {
+    public AuthTokens login(LoginRequestDTO request) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -59,13 +60,13 @@ public class AuthService {
         refreshTokenService.revokeAllByUser(user);
         RefreshToken refreshToken = refreshTokenService.createRefreshToken(user);
 
-        return new AuthResponseDTO(
+        return new AuthTokens(
                 accessToken,
                 refreshToken.getToken()
         );
     }
 
-    public AuthResponseDTO refreshToken(String refreshToken) {
+    public AuthTokens refreshToken(String refreshToken) {
 
         //Valida o refresh token (existência, expiração e revogação)
         RefreshToken token = refreshTokenService.validateToken(refreshToken);
@@ -78,7 +79,7 @@ public class AuthService {
         refreshTokenService.revokeToken(refreshToken);
         RefreshToken newRefreshToken = refreshTokenService.createRefreshToken(user);
 
-        return new AuthResponseDTO(newAccessToken, newRefreshToken.getToken());
+        return new AuthTokens(newAccessToken, newRefreshToken.getToken());
     }
 
     public void logout(String refreshToken) {
