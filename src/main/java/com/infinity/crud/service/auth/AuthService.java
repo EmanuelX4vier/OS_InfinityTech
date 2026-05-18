@@ -77,7 +77,7 @@ public class AuthService {
         String newAccessToken = jwtService.generateToken(user.getEmail());
 
         refreshTokenService.revokeToken(refreshToken);
-        refreshTokenService.deleteToken(refreshToken);
+        //refreshTokenService.deleteToken(refreshToken);
         RefreshToken newRefreshToken = refreshTokenService.createRefreshToken(user);
 
         return new AuthTokens(newAccessToken, newRefreshToken.getToken());
